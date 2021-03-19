@@ -1,15 +1,17 @@
-- hosts: workstation
+# tasks for OSP smoke test
+- hosts: localhost
+  connection: local
   gather_facts: false
   tasks:
-  - name: OpenStack servers
-    os_server_facts:
-     cloud: openstack
-     server: frontend
-     filters:
+  - name: get info for frontend server on Openstack cloud
+    os_server_info:
+      cloud: openstack
+      server: frontend
+      filters:
         vm_state: active
     register: result
-  
-  - name: Curl website
+
+  - name: Check website connectivity via haproxy
     uri:
       url: "http://{{ result.openstack_servers[0].accessIPv4 }}"
       return_content: yes
