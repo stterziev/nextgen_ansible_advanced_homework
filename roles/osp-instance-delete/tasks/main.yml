@@ -13,7 +13,7 @@
       name: "{{ __instance.name }}"
       state: "{{ openstack_server_state | default('absent') }}"
     loop: "{{ r_instances.openstack_servers }}"
-     loop_control:
+    loop_control:
       loop_var: __instance
     register: r_deleted
    
