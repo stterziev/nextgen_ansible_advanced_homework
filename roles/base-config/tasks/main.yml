@@ -8,10 +8,10 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-#- name: enable repos
-#  template:
-#    src: repos_template.j2
-#    dest: "/etc/yum.repos.d/internal.repo"
+- name: enable repos
+  template:
+    src: repos_template.j2
+    dest: "/etc/yum.repos.d/internal.repo"
  
 - name: install base tools and packages
   yum:
